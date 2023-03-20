@@ -41,13 +41,13 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate, UI
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
-            let person = people[indexPath.item]
-            let path = getDocumentsDirectory().appendingPathComponent(person.image)
-            vc.selectedImage = path
-            
-            navigationController?.pushViewController(vc, animated: true)
-        }
+        let vc = DetailViewController.makeFromStoryboard()
+        let person = people[indexPath.item]
+        let path = getDocumentsDirectory().appendingPathComponent(person.image)
+        vc.selectedImage = path
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    
     }
     
     @objc func takePicture() {
